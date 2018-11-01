@@ -1,0 +1,582 @@
+<?php
+/**
+ * @file
+ *
+ * Defines a custom field for constructing a custom symptom.
+ */
+
+module_load_include('inc', 'my_hospital', 'my_hospital.levels');
+
+/**
+ * Implements hook_field_info().
+ *
+ * Here we tell Drupal about our custom fields. In this case
+ * we only have one. Its machine-readable name is 'my_hospital_symptom'
+ * because the convention is 'modulename_fieldname'.
+ *
+ * We also define the machine names of the widget and the formatter.
+ */
+function my_hospital_field_info() {
+  return array(
+    'my_hospital_symptom' => array(
+      'label' => t('Custom Symptom'),
+      'description' => t('Custom symptom Field'),
+      'default_widget' => 'my_hospital_symptom_widget',
+      'default_formatter' => 'my_hospital_symptom_formatter',
+    ),
+  );
+}
+
+/**
+ * Implements hook_field_widget_info().
+ *
+ * Here we tell Drupal about our custom widgets. In this
+ * case we only have one. As with my_hospital_field_formatter_info(),
+ * we tell Drupal which fields our widget works with (in this case, just
+ * 'my_hospital_symptom').
+ */
+function my_hospital_field_widget_info() {
+  return array(
+    'my_hospital_symptom_widget' => array(
+      'label' => t('Default'),
+      'field types' => array('my_hospital_symptom'),
+    ),
+  );
+}
+
+/**
+ * Implements hook_field_widget_form().
+ *
+ * http://api.drupal.org/api/drupal/modules--field--field.api.php/function/hook_field_widget_form/7
+ * 
+ * Here we define a form element that the user inputs data
+ * into. If we have a complex custom field, we can have many sub-elements
+ * organized into fieldsets.
+ */
+function my_hospital_field_widget_form(&$form, &$form_state, $field, $instance, $langcode, $items, $delta, $element) {
+  // $field_name is the name of the field instance. This is the
+  // name that the administrator gives the field instance when
+  // attaching it to an entity.
+  $field_name = $instance['field_name'];
+
+  // Is this field instance required?
+  // We can use this $required value to make sub-elements of the
+  // widget form required.
+  $required = $element['#required'];
+
+  // $item is where the current saved values are stored
+  $item =& $items[$delta];
+
+  // $element is already populated with #title, #description, #delta,
+  // #required, #field_name, etc.
+  //
+  // In this example, $element is a fieldset, but it could be any element
+  // type (textfield, checkbox, etc.)
+  $element += array(
+    '#type' => 'fieldset',
+  );
+
+  // Array keys in $element correspond roughly
+  // to array keys in $item, which correspond
+  // roughly to columns in the database table.
+  $element['symptom_name'] = array(
+    '#title' => t('Symptom Name'),
+    '#type' => 'textfield',
+    '#required' => FALSE,
+    // use #default_value to prepopulate the element
+    // with the current saved value
+    '#default_value' => isset($item['symptom_name']) ? $item['symptom_name'] : '',
+  );
+
+
+  $element['symptom_summary'] = array(
+    '#title' => t('Description'),
+    '#type' => 'textarea',
+    '#required' => $required,
+    // use #default_value to prepopulate the element
+    // with the current saved value
+    '#default_value' => isset($item['symptom_summary']) ? $item['symptom_summary'] : '',
+  );
+
+  $element['symptom_image'] = array(
+    '#title' => t('Upload Symptom Image'),
+    '#type' => 'managed_file',
+    '#description' => t('Click "Browse..." to select an image to upload.'),
+    '#default_value' => isset($item['symptom_image']) ? $item['symptom_image'] : '',
+    '#upload_location' => 'public://symptom_images/',
+    
+    // use #default_value to prepopulate the element
+    // with the current saved value
+  );
+
+ 
+  $element['symptom_level'] = array(
+    '#title' => t('What level of your condition:'),
+    '#description' => t('Choose the level according to your current condition'),
+    '#required' =>  FALSE,
+    '#type' => 'radios',
+    '#options' => my_hospital_symptom_levels(),
+    '#default_value' => isset($item['symptom_level']) ? $item['symptom_level'] : '',
+    '#ajax' => array(
+      'callback' => 'radios_callback',
+      'effect' => 'fade',
+        ),
+  );
+  
+
+  return $element;
+}
+
+
+
+
+/**
+ * Implements hook_field_is_empty().
+ *
+ * my_hospital_field_is_empty() lets Drupal know whether or not to process input
+ * at all; if the field is empty, it won't bother validating
+ * or saving the values.
+ */
+function my_hospital_field_is_empty($item, $field) {
+  $has_stuff = FALSE;
+ 
+  if (!empty($item['symptom_name'])) {
+    $has_stuff = TRUE;
+  }
+
+  if (!empty($item['symptom_summary'])) {
+    $has_stuff = TRUE;
+  }
+
+  return !$has_stuff;
+}
+
+/**
+ * Implements hook_field_validate().
+ *
+ * my_hospital_field_validate() sets an $errors array with information about
+ * the errors detected in the field input.
+ */
+function my_hospital_field_validate($entity_type, $entity, $field, $instance, $langcode, $items, &$errors) {
+
+}
+
+/**
+ * Implements hook_field_widget_error().
+ *
+ * my_hospital_field_widget_error() takes the errors set in my_hospital_field_validate()
+ * and tells Drupal how to notify the user of the error. For example, this implementation
+ * calls form_error() with each element passed in the $error['error_elements'] array, so
+ * we can identify a problem with several elements in our field.
+ */
+function my_hospital_field_widget_error($element, $error, $form, &$form_state) {
+
+}
+
+
+
+/**
+ * Implements hook_field_formatter_info().
+ *
+ * Here we tell Drupal about our custom formatters. In this
+ * case we only have one. Note that our formatter works on
+ * the field type 'my_hospital_symptom', which is
+ * the machine-readable name we defined in my_hospital_field_info().
+ */
+function my_hospital_field_formatter_info() {
+  return array(
+    'my_hospital_symptom_formatter' => array(
+      'label' => t('Default'),
+      'field types' => array('my_hospital_symptom'),
+    ),
+    'my_hospital_symptom_canvas' => array(
+      'label' => t('Canvas Formatter'),
+      'field types' => array('my_hospital_symptom'),
+    ),
+  );
+}
+
+/**
+ * Implements hook_field_formatter_view().
+ *
+ * This function gives Drupal a structured array, which
+ * defines how the data stored in the field should be rendered.
+ */
+function my_hospital_field_formatter_view($entity_type, $entity, $field, $instance, $langcode, $items, $display) {
+  $element = array();
+
+  switch ($display['type']) {
+  case 'my_hospital_symptom_formatter':
+    $format_field = 'my_hospital_format_default_field';
+    break;
+  }
+
+  // watchdog('Formatter View entity', '<pre>'. print_r($entity, TRUE) .'</pre>');
+  // watchdog('Formatter View type', '<pre>'. print_r($entity_type, TRUE) .'</pre>');
+  // watchdog('Formatter View field', '<pre>'. print_r($field, TRUE) .'</pre>');
+  // watchdog('Formatter View instance', '<pre>'. print_r($instance, TRUE) .'</pre>');
+  // watchdog('Formatter View display', '<pre>'. print_r($display, TRUE) .'</pre>');
+  
+
+  foreach ($items as $delta => $item) {
+    $element[$delta] = $format_field($item);
+  }
+
+  return $element;
+}
+
+/**
+ * Helper to render a single formatted entry. Returns
+ * a structured array that will display the data stored in
+ * $item.
+ */
+function my_hospital_format_default_field($item) {
+  $element = array(
+    '#type' => 'container',
+    '#attributes' => array( 
+      'class' => array('medical-item'),
+     ),
+  );
+  $element['symptom_name'] = array(
+    'item' => array(
+      '#type' => 'container',
+      '#attributes' => array( 
+        'class' => array( 'medical-item-field-name'),
+       ),
+      'text' => array(
+        '#markup' => $item['symptom_name'],
+      ),
+    ),
+  );
+
+  $element['symptom_summary'] = array(
+    'item' => array(
+      '#type' => 'container',
+      '#attributes' => array( 'class' => array( 'medical-item-field-summary') ),
+      'text' => array(
+        '#markup' => $item['symptom_summary'],
+      ),
+    ),
+  );
+
+  $content = array();
+  $file = file_load($item['symptom_image']);
+  if($file) {
+    $image = image_load($file->uri);
+    $content = array(
+        'file' => array(
+        '#theme' => 'image_style',
+        '#style_name' => 'large',
+        '#path' => $image->source,
+        '#alt' => 'Image unvailable',
+      ),
+    );
+  }
+
+
+  $element['symptom_image'] = array(
+    'item' => $content,
+  );
+
+
+  $radios = array (
+      '#type' => 'radios',
+      '#title' => t('What level of your condition:'),
+      '#description' => t('Choose the level according to your current condition'),
+      '#options' => my_hospital_symptom_levels(),
+      '#default_value' => isset($item['symptom_level']) ? $item['symptom_level'] : '',
+      '#ajax' => array(
+        'callback' => 'radios_callback',
+        'effect' => 'fade',
+        'event' => 'change'
+          ),  
+      '#input' => 1,
+      '#process' => array(
+          '0' => 'form_process_radios'
+        ),
+      '#theme_wrappers' => array(
+              '0' => 'radios'
+          ),
+      '#pre_render' => array(
+              '0' => 'form_pre_render_conditional_form_element',
+              '1' => 'ctools_dependent_pre_render'
+          ),
+      '#defaults_loaded' => 1,
+      '#tree' => 1,
+      '#processed' => 1,
+      '#title_display' => 'before'    
+  );
+
+  $level = '
+    <label class="label-title-question">What level of your condition: </label>
+    <div id="medical-item-field-level-radios-id">' . render_radio(my_hospital_symptom_levels(), $item) .
+    '</div>
+    <div class="description">Choose the level according to your current condition</div>
+    ';
+
+  //watchdog('Formatter View', '<pre>'. print_r(radios_render($radios), TRUE) .'</pre>');
+  $element['symptom_level'] = array(
+    'item' => array(
+      '#type' => 'container',
+      '#attributes' => array( 
+        'class' => array('medical-item-field-level'),
+        'id'  => array('medical-item-field-level-id'),
+      ),
+      'text' => array(
+        '#markup' => $level,
+      ),
+    ),
+    //radios_render($radios, $item);
+  );
+
+  //$element['symptom_level'] = $level;
+  
+
+  return $element;
+}
+
+function radios_callback($form, $form_state) {
+  //watchdog('Radios callback', '<pre>'. print_r($form_state, TRUE) .'</pre>');
+  return $form;
+}
+
+function render_radio($radios, $item) {
+  $html = '';
+  foreach($radios as $key => $choice) {
+   $radioId = 'medical-item-field-level-' . my_hospital_make_html_name($item['symptom_name']) . '-' . $key . '-id';
+   $radioName = my_hospital_make_html_name($item['symptom_name']);
+   $checked = (isset($item['symptom_level']) && $item['symptom_level'] == $key) ? 'checked="checked"' : '';
+   $html .= '
+
+  <label class="medical-item-field-level-label">' . $choice . '
+  <input type="radio" id="' .  $radioId . '" name="'. $radioName .'" value="' . $key .
+  '" ' . $checked . ' >
+  <span class="checkmark"></span>
+  </label>
+   ';
+  }
+  return $html;
+}
+
+function radios_render($element, $item) {
+  $weight=0;
+  foreach ($element['#options'] as $key => $choice) {
+
+    // Maintain order of options as defined in #options, in case the element
+    // defines custom option sub-elements, but does not define all option
+    // sub-elements.
+    $weight += 0.001;
+    $element += array(
+      $key => array(),
+    );
+
+    
+    $element[$key] += array(
+      '#type' => 'radio',
+      '#title' => $choice,
+      // The key is sanitized in drupal_attributes() during output from the
+      // theme function.
+      '#return_value' => $key,
+      '#value' => ( isset($element['#default_value']) && $key === $element['#default_value']) ? TRUE : FALSE,
+      // Use default or FALSE. A value of FALSE means that the radio button is
+      // not 'checked'.
+      '#ajax' => isset($element['#ajax']) ? $element['#ajax'] : NULL,
+      '#weight' => $weight,
+      '#name' => $item['symptom_name'],
+      '#process' => array(
+        '0' => 'ajax_process_form'
+      ),
+      '#processed' => 1,
+      '#theme' => 'radio',
+      '#theme_wrappers' => array(
+              '0' => 'form_element'
+      ),
+
+      '#title_display' => 'after',
+      '#pre_render' => array(
+              '0' => 'ctools_dependent_pre_render'
+          ),
+
+      '#defaults_loaded' => 1,
+      '#tree' => 1,
+      '#ajax_processed' => 1,
+    );
+    
+  }
+  
+  //watchdog('Formatter View', '<pre>'. print_r( $element, TRUE) .'</pre>');
+  
+  return $element;
+}
+
+
+function my_hospital_node_view($node, $view_mode, $langcode) {
+  if ($view_mode == 'full') {
+    $setting = array('my_hospital' => array('currentNid' => $node->nid));
+    drupal_add_js($setting, 'setting');
+    
+    global $user;
+    drupal_add_js(array('my_hospital' => array('user' => $user)), 'setting');
+  }
+} 
+
+
+/**
+ * Implements hook_field_presave().
+ */
+function my_hospital_field_presave($entity_type, $entity, $field, $instance, $langcode, &$items) {
+  if ($field['type'] == 'my_hospital_symptom') {
+    foreach ($items as $delta => &$item) {
+      $new_item = array();
+      $new_item['symptom_name'] = $item['symptom_name'];
+      $new_item['symptom_summary'] = $item['symptom_summary'];
+      $new_item['symptom_image'] = $item['symptom_image'];
+      $new_item['symptom_level'] = $item['symptom_level'];
+      $item = $new_item;
+    }
+  }
+}
+
+/**
+ * Implements hook_field_load().
+ */
+function my_hospital_field_load($entity_type, $entities, $field, $instances, $langcode, &$items, $age) {
+  foreach ($entities as $id => $entity) {
+    foreach ($items[$id] as $delta => &$item) {
+      $new_item = array();
+      $new_item['symptom_name'] = $item['symptom_name'];
+      $new_item['symptom_summary'] = $item['symptom_summary'];
+      $new_item['symptom_image'] = $item['symptom_image'];
+      $new_item['symptom_level'] = $item['symptom_level'];
+      //watchdog('Load data', '<pre>'. print_r($item, TRUE) .'</pre>');
+      $item = $new_item;
+    }
+  }
+}
+
+
+
+function my_hospital_feeds_processor_targets_alter(&$targets, $entity_type, $bundle_name)
+{
+  if($bundle_name == 'medical_problem') {
+    $targets['symptom_name'] = array(
+      'name' => t('Symptom: Symptom Name'),
+      'callback' => 'symptom_set_target',
+      'description' => 'Symptom:' . t('Symptom Name'),
+    );
+    // summary
+    $targets['symptom_summary'] = array(
+      'name' => t('Symptom: Summary'),
+      'callback' => 'symptom_set_target',
+      'description' => 'Symptom:' . t('Summary'),
+    );
+  }
+}
+
+
+function symptom_set_target($source, $node, $target, $value) {
+ // We assume single values for all ubercart related entities.
+ $value = $value[0];
+
+ $target_array = explode('_', $target);
+
+ if ($target_array[0] != "attribute") {
+   // For numeric fields, default to 0 if empty
+   if (in_array($target, array('symptom_name', 'symptom_summary')) && $value == '') {
+     $value = 0;
+   }
+   $node->$target = $value;
+ }
+ else {
+   $key = $target_array[1];
+
+   if ($key == 'combinations') {
+     $data = unserialize($value);
+     if ($data !== FALSE && is_array($data)) {
+       $node->my_hospital['combinations'] = $data;
+     }
+   }
+   else {
+     $aid = $target_array[2];
+     $oid = $target_array[3];
+     // If value is empty, it's not an attribute we want to use
+     if ($value != '') {
+       if (!isset($node->my_hospital['attributes'][$aid])) {
+         $node->my_hospital['attributes'][$aid] = new stdClass();
+       }
+       if (!isset($node->my_hospital['attributes'][$aid]->options[$oid])) {
+         $node->my_hospital['attributes'][$aid]->options[$oid] = new stdClass();
+       }
+       $node->my_hospital['attributes'][$aid]->options[$oid]->$key = $value;
+     }
+   }
+ }
+}
+
+
+
+
+/**
+ * Implements hook_feeds_node_update().
+ */
+function my_hospital_node_update($node) {
+  my_hospital_node_insert($node);
+}
+
+/**
+ * Implements hook_feeds_node_insert().
+ */
+function my_hospital_node_insert($node) {
+
+  if($node->type=='medical_problem') {
+   
+  
+    if(isset($node->symptom_name) || isset($node->symptom_summary)) {
+
+      $symptomNames = explode(' || ',$node->symptom_name);
+      watchdog('Feed Insert', '<pre>'. print_r($symptomNames , TRUE) .'</pre>');
+      
+      for ($index=0; $index < count($symptomNames); $index++) {
+        $name = $symptomNames[$index];
+        $name = ucfirst(trim($name));
+        db_insert('field_data_field_symptom_list')
+        ->fields(array(
+          'entity_type' => 'node',
+          'bundle' => 'medical_problem',
+          'deleted' => '0',
+          'entity_id' => $node->nid,
+          'revision_id' => $node->nid,
+          'language'  =>  'und',
+          'delta' =>  $index,
+          'field_symptom_list_symptom_name' => $name,
+          'field_symptom_list_symptom_summary' => '',
+          'field_symptom_list_symptom_image' => '10',
+          'field_symptom_list_symptom_level' => 'none',
+          )
+        )
+        ->execute();
+      }
+    }
+
+  }
+}
+
+
+
+// function my_hospital_views_pre_view(&$view) {
+  
+  
+//   if ($view->name === 'prescription_list') {
+// //   $view_filters = $view->display_handler->get_option('filters');
+// //   $view_filters['model']['value'] = variable_get('prescription_models', []);
+ 
+// // $overrides = array();
+// // $overrides['filters'] = $view_filters;
+// // foreach ($overrides as $option => $definition) {
+// //   $view->display_handler->override_option($option, $definition);
+// // }
+
+// //dsm($view);
+// watchdog('View', '<pre>'. print_r($view , TRUE) .'</pre>');
+// }
+// }

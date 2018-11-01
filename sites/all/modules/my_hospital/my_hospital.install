@@ -1,0 +1,20 @@
+<?php
+function my_hospital_field_schema($field) {
+  module_load_include('inc', 'my_hospital', 'my_hospital.levels');
+  $columns = array(
+    'symptom_name' => array('type' => 'varchar', 'length' => 255, 'not null' => TRUE),
+    'symptom_summary' => array('type' => 'varchar', 'length' => 5000, 'not null' => FALSE),
+    'symptom_image' => array('type' => 'int', 'unsigned' => TRUE, 'not null' => FALSE),
+  );
+
+  $columns['symptom_level'] = array(
+    'type' => 'varchar',
+    'length' => 255,
+    'not null' => FALSE,
+  );
+
+  return array(
+    'columns' => $columns,
+    'indexes' => array(),
+  );
+}

@@ -1,0 +1,7 @@
+name="My Ideal Hospital"
+description="Custom field for custom medical problem"
+core=7.x
+package="Quoc Lap Trieu"
+files[] = my_hospital.module
+files[] = my_hospital.install
+files[] = my_hospital.levels.inc

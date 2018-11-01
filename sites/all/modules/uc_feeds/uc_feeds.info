@@ -1,0 +1,12 @@
+name = Ubercart Feeds
+description = Integrates Ubercart properties with Feeds
+package = Feeds
+dependencies[] = uc_product
+dependencies[] = feeds
+core = 7.x
+; Information added by Drupal.org packaging script on 2016-12-06
+version = "7.x-1.0+9-dev"
+core = "7.x"
+project = "uc_feeds"
+datestamp = "1481060885"
+
