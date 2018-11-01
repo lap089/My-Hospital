@@ -1,0 +1,526 @@
+body {
+  background-image: url(../background-1.jpg);
+  background-repeat: repeat;
+  background-attachment: fixed;
+  background-position: left bottom;
+}
+
+/* Navigation Menu */
+
+.menu {
+  margin-top: 40px;
+  text-align: center;
+}
+
+.menu a {
+  color: #ffffff;
+  text-decoration: none;
+  text-transform: uppercase;
+  font-size: 16px;
+}
+
+.menu a.active {
+  color: #e8491d;
+  font-weight: bold;
+}
+
+.menu a:hover {
+  color: #d14812;
+}
+
+.menu li {
+  display: inline-block;
+  padding: 0 20px 0 20px;
+}
+
+.menu .logo {
+  width: 40px;
+  height: auto;
+  float: left;
+}
+.menu h1 {
+  margin: 0;
+  display: inline;
+}
+
+.menu ul {
+  margin: 0;
+  padding: 0;
+}
+
+.menu-log {
+  float: right;
+  margin-right: 20px;
+}
+.menu-log a {
+  text-decoration: none;
+  color: white;
+}
+
+.menu-log a:hover {
+  color: #d14812;
+}
+
+.menu-user {
+  float: left;
+  margin-left: 20px;
+  margin-top: 10px;
+}
+
+
+/* Header */
+
+.header {
+  background: #292221;
+  color: #ffffff;
+  padding-top: 30px;
+  min-height: 70px;
+  border-bottom: #e8491d 3px solid;
+}
+
+header img {
+  width: 50px;
+  height: auto;
+}
+
+header .header__site-name a {
+  color: #ffffff !important;
+}
+
+header .header__site-name a:hover {
+ text-decoration: none;
+}
+
+/* News List */
+
+.assignments-list {
+  padding: 5px;
+  padding-bottom: 15px;
+  font-size: 14px;
+  border-bottom: 1px solid gray;
+}
+
+.assignments-list:hover {
+  background-color: rgb(115, 174, 241);
+  border: 2px salmon;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.assignments-list img {
+  float: left;
+  margin-right: 5px;
+}
+
+.assignments-list p {
+  display: inline;
+}
+
+div#block-menu-block-1 {
+  background-color: rgb(238, 165, 165);
+}
+
+div#block-menu-block-1 ul {
+  list-style: none;
+}
+
+div#block-menu-block-1 ul li {
+  display: inline;
+  list-style-type: none;
+  padding-right: 20px;
+  font-size: 1.5em;
+  font-style: bold;
+  padding-right: 2em;
+  padding-top: 1.5em;
+}
+
+.symptom-row-node {
+  text-align: center;
+  float: left;
+  width: 40%;
+}
+
+.symptom-row-node img {
+  height: 100px;
+  width: auto;
+}
+
+.medical-item-row {
+  padding: 10px;
+}
+
+.medical-item-row td {
+  width: 10%;
+}
+
+.medical-item-row:hover {
+  background-color: azure;
+  border: 2px solid;
+  border-radius: 5%;
+  cursor: pointer;
+}
+
+/* Clear Fix */
+
+.clearfix::after {
+  content: "";
+  clear: both;
+  display: table;
+}
+
+/* User Form */
+
+#edit-account input[type="text"] input[type="password"] {
+  border-radius: 10px;
+  color: #4caf50;
+}
+
+/* Popup Form */
+
+/* The popup form - hidden by default */
+/* .form-popup {
+  display: none;
+  position: fixed;
+  bottom: 0;
+  right: 15px;
+  border: 3px solid #f1f1f1;
+  z-index: 9;
+} */
+
+.animate-bottom {
+  position: relative;
+  -webkit-animation-name: animatebottom;
+  -webkit-animation-duration: 1s;
+  animation-name: animatebottom;
+  animation-duration: 1s;
+}
+
+@-webkit-keyframes animatebottom {
+  from {
+    bottom: -100px;
+    opacity: 0;
+  }
+  to {
+    bottom: 0px;
+    opacity: 1;
+  }
+}
+
+@keyframes animatebottom {
+  from {
+    bottom: -100px;
+    opacity: 0;
+  }
+  to {
+    bottom: 0;
+    opacity: 1;
+  }
+}
+
+.form-popup {
+  width: 100%;
+  height: 100%;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  position: absolute;
+  visibility: hidden;
+  display: none;
+  overflow: auto;
+  background-color: rgba(48, 47, 47, 0.9); /* complimenting your modal colors */
+}
+
+/* Add styles to the form container */
+.form-container {
+  width: 60%;
+  position: relative;
+  margin: 0 auto;
+  color: white;
+  top: 5%;
+}
+
+/* Set a style for the submit/login button */
+.btn {
+  background-color: #4caf50;
+  color: white;
+  padding: 16px 20px;
+  border: none;
+  cursor: pointer;
+  width: 80%;
+  margin-bottom: 10px;
+  opacity: 0.8;
+  text-align: center;
+  border-radius: 10px;
+}
+
+.btn-container {
+  text-align: center;
+}
+
+/* Add a red background color to the cancel button */
+.form-container .cancel {
+  background-color: red;
+}
+
+.btn-disabled {
+  background-color: gray;
+}
+
+.chat {
+  background-color: orange;
+}
+
+.reset {
+  background-color: royalblue;
+}
+.btn:hover {
+  opacity: 1;
+}
+
+/* Add some hover effects to buttons */
+.form-container .btn:hover,
+.open-button:hover {
+  opacity: 1;
+}
+
+#doctor-detail-footer {
+  visibility: hidden;
+}
+
+/* Cart View */
+
+.form-submit {
+  background-color: #4caf50;
+  color: white;
+  padding: 16px 20px;
+  border: none;
+  cursor: pointer;
+  margin: 10px;
+  margin-bottom: 10px;
+  opacity: 0.7;
+  text-align: center;
+  border-radius: 10px;
+}
+
+.form-submit:hover {
+  opacity: 1;
+}
+
+#uc-cart-view-form .remove .form-submit {
+  background-color: red;
+}
+
+#uc-cart-view-form input[value="Empty cart"] {
+  background-color: red;
+}
+
+#uc-cart-view-form input[value="Checkout"] {
+  background-color: blue;
+}
+
+#uc-cart-view-form th {
+  border: 1px solid #ddd;
+  padding: 8px;
+  text-align: center;
+}
+
+#uc-cart-view-form td {
+  border: 2px solid rgb(204, 238, 172);
+  padding: 8px;
+  text-align: center;
+}
+
+#uc-cart-view-form th {
+  padding-top: 12px;
+  padding-bottom: 12px;
+  text-align: left;
+  background-color: #4caf50;
+  color: white;
+}
+
+.form-actions #edit-cancel {
+  background-color: red;
+  color: white;
+  padding: 16px 20px;
+  border: none;
+  cursor: pointer;
+  margin: 10px;
+  margin-bottom: 10px;
+  border-radius: 10px;
+}
+
+.cart-block-summary {
+  border: 2px solid rgb(193, 193, 243);
+  border-radius: 10px;
+}
+
+.cart-block-summary-links a {
+  background-color: #4caf50;
+  color: white;
+  padding: 8px 10px;
+  border: none;
+  cursor: pointer;
+  margin: 5px;
+  border-radius: 10px;
+  opacity: 0.7;
+}
+
+.cart-block-summary-links a:hover {
+  opacity: 1;
+}
+
+.form-wrapper td,
+th {
+  border: 2px solid rgb(204, 238, 172);
+  padding: 8px;
+  text-align: center;
+}
+
+.form-wrapper th {
+  padding-top: 12px;
+  padding-bottom: 12px;
+  text-align: left;
+  background-color: #4caf50;
+  color: white;
+}
+
+ul.pager li {
+  background-color: #4caf50;
+  color: white;
+  padding: 2px 2px;
+  border: none;
+  cursor: pointer;
+  margin: 5px;
+  border-radius: 20px;
+  opacity: 0.9;
+}
+
+ul.pager li a {
+  text-decoration: none;
+  color: blue;
+  margin-bottom: 40px;
+}
+
+ul.pager li:hover {
+  opacity: 1;
+}
+
+
+
+
+/* Medical Item Form*/
+
+.medical-item {
+  
+  padding: 10px;
+  margin-top: 10px;
+  margin-bottom: 20px;
+  border-radius: 10px;
+  border: 2px solid gray;
+}
+
+.medical-item-field-name {
+  font-weight: bold;
+  font-size: 25px;
+  margin-bottom: 15px;
+}
+
+.medical-item .label-title-question {
+  font-size: 20px;
+  margin-bottom: 10px;
+}
+
+.medical-item .description {
+  font-size: 18px;
+}
+/* .medical-item .medical-item-field-level-label {
+  margin: 10px;
+} */
+
+#form-submit-button-id button {
+  background-color: #4caf50;
+  color: white;
+  padding: 16px 20px;
+  border: none;
+  cursor: pointer;
+  margin: 10px;
+  margin-bottom: 10px;
+  opacity: 0.7;
+  text-align: center;
+  border-radius: 10px;
+  width: 80%;
+}
+
+#form-submit-button-id {
+  text-align: center;
+}
+
+#form-submit-button-id button:hover {
+  opacity: 1;
+}
+
+
+/* The container */
+.medical-item-field-level-label {
+  display: block;
+  position: relative;
+  padding-left: 35px;
+  margin-bottom: 15px;
+  cursor: pointer;
+  font-size: 20px;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+/* Hide the browser's default radio button */
+.medical-item-field-level-label input {
+  position: absolute;
+  opacity: 0;
+  cursor: pointer;
+}
+
+/* Create a custom radio button */
+.checkmark {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 25px;
+  width: 25px;
+  background-color: #eee;
+  border-radius: 50%;
+}
+
+/* On mouse-over, add a grey background color */
+.medical-item-field-level-label:hover input ~ .checkmark {
+  background-color: #ccc;
+}
+
+/* When the radio button is checked, add a blue background */
+.medical-item-field-level-label input:checked ~ .checkmark {
+  background-color: #2196F3;
+}
+
+/* Create the indicator (the dot/circle - hidden when not checked) */
+.checkmark:after {
+  content: "";
+  position: absolute;
+  display: none;
+}
+
+/* Show the indicator (dot/circle) when checked */
+.medical-item-field-level-label input:checked ~ .checkmark:after {
+  display: block;
+}
+
+/* Style the indicator (dot/circle) */
+.medical-item-field-level-label .checkmark:after {
+ top: 9px;
+left: 9px;
+width: 8px;
+height: 8px;
+border-radius: 50%;
+background: white;
+}

@@ -1,0 +1,46 @@
+.medical-item-shopping-row {
+    margin: 10px;
+    margin-bottom: 50px;
+    border-bottom: 2px solid #4CAF50;
+}
+
+
+li.medical-item-shopping-row {
+    list-style: none;
+}
+
+li.medical-item-shopping-row .medical-item-shopping-row-img {
+   float: left;
+   width: 30%;
+}
+
+li.medical-item-shopping-row .views-field-addtocartlink {
+    float: right;
+    text-align: center;
+}
+
+
+li.medical-item-shopping-row .medical-item-shopping-info {
+    float:left;
+    width: 70%;
+    padding-left: 40px;
+}
+
+li.medical-item-shopping-row .node-add-to-cart {
+  background-color: #4CAF50;
+  color: white;
+  padding: 16px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  width: 100%;
+  margin-bottom:-2px;
+  opacity: 0.8;
+  text-align: center;
+}
+
+li.medical-item-shopping-row .node-add-to-cart:hover {    
+   opacity: 1;
+    
+}
+

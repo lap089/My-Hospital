@@ -1,0 +1,12 @@
+.product-selection-row {
+    margin: 10px;
+    background-color: white;
+}
+
+
+.product-selection-row:hover {
+    background-color: rgb(94, 92, 92);
+    border: 0.5px solid;
+    cursor: pointer;
+}
+

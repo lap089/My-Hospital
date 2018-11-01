@@ -1,0 +1,47 @@
+
+.section-title {
+    float: left;
+    width: 100%;
+    position: relative;
+    padding-bottom: 50px;
+  }
+  
+  .section-subtitle {
+    position: absolute;
+    width: 100%;
+    text-align: center;
+    left: 0;
+    top: -15px;
+    font-size:40px;
+    opacity: 0.13;
+    z-index: -1;
+    text-transform: uppercase;
+    font-weight: bold;
+  }
+  
+  .section-title h2 {
+    width: 100%;
+    text-align: center;
+    color: #566985;
+    font-size: 34px;
+    font-weight: 700;
+  }
+  
+  
+  #boxes{
+    margin-top:100px;
+    margin-bottom: 100px;
+    
+  }
+  
+  #boxes .symptom-box{
+    float:left;
+    text-align: center;
+    width:30%;
+    padding:10px;
+    
+  }
+  
+  #boxes .symptom-box img{
+    width:150px;
+  }

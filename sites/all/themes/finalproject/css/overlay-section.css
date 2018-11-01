@@ -1,0 +1,141 @@
+
+
+.overlay-header {
+
+}
+
+.overlay-header img {
+    max-height: 800px;
+    position: relative;
+}
+
+.overlay-header .medical-problems-list{
+    position: absolute; 
+    top: 60px; 
+    right: 0;
+    margin: 0;
+    left: 0; 
+    text-align: center;
+    color: white; 
+   letter-spacing: -1px;  
+   background: rgb(0, 0, 0); /* fallback color */
+   background: rgba(43, 41, 41, 0.7);
+   
+}
+
+
+
+
+.medical-problems-list #medical-problems-list-id {
+    padding: 16px 20px;
+    border: none;
+    cursor: pointer;
+    margin: 10px;
+    margin-bottom:10px;
+    opacity: 0.9;
+    text-align: center;
+    border-radius: 5px;
+}
+
+.medical-problems-list #medical-problems-list-id:hover {
+    opacity: 1;
+}
+
+.medical-problems-list #medical-problem-list-button-id{
+    background-color: #4CAF50;
+    color: white;
+    padding: 16px 20px;
+    border: none;
+    cursor: pointer;
+    margin: 10px;
+    margin-bottom:10px;
+    opacity: 0.7;
+    text-align: center;
+    border-radius: 10px;
+}
+
+.medical-problems-list #medical-problem-list-button-id:hover{
+    opacity: 1;
+}
+
+
+#user-login-form ul li{
+    list-style-type: none;
+}
+
+#user-login-form input[value="Log in"] {
+    width: 40%;
+}
+
+#user-login-form input[type="text"],input[type="password"] {
+    margin:4px;
+    padding: 4px;
+    height:35px;
+    width:30%;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+#user-login-form label, input {
+    float: none; /* if you had floats before? otherwise inline-block will behave differently */
+    display: inline-block;
+    vertical-align: middle;    
+}
+
+#user-login-form li {
+    margin: 30px;
+}
+
+#user-login-form a{
+    list-style: none;
+    padding:10px;
+    border-radius: 10px;
+    background:blue;
+    color: white;
+    cursor: pointer;
+    opacity: 0.7;
+    text-decoration: none;
+  }
+  
+#user-login-form a:hover{
+    opacity: 1;
+  }
+  
+
+
+
+@media(max-width: 790px){
+
+    .overlay-header img {
+        height: 350px;
+    }
+
+    
+.overlay-header .medical-problems-list{
+    position: absolute; 
+    top: 0; 
+    right: 0;
+    margin: 0;
+    left: 0; 
+}
+
+.medical-problems-list #medical-problem-list-button-id, #medical-problems-list-id, .medical-problems-list .form-submit{
+    padding: 0px 0px;
+    margin: 0px;
+    margin-bottom:0px;
+}
+#user-login-form input[type="text"],input[type="password"] {
+    margin:0px;
+    padding: 0px;
+    height:30px;
+}
+#user-login-form li {
+    margin: 10px;
+}
+
+#user-login-form a{
+    padding:5px;
+}
+
+
+}

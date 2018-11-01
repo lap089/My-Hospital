@@ -1,0 +1,33 @@
+.doctor-selection-list {
+  padding: 10px;
+  margin: 10px;
+  margin-bottom: 20px;
+  border: 2px solid gray;
+  border-radius: 10px;
+}
+
+.doctor-selection-list:hover {
+  background-color: azure;
+  cursor: pointer;
+}
+
+.doctor-selection-list img {
+    width: 15%;
+    min-width: 100px;
+}
+
+textarea#appointment-message-id {
+  width: 100%;
+}
+
+#doctor-selection-form-id img {
+  width: 30%;
+  min-width: 100px;
+}
+
+#doctor-detail-footer {
+    text-align: center;
+}
+
+
+

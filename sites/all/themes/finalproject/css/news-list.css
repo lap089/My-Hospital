@@ -1,0 +1,8 @@
+.news-list-row {
+    margin-bottom: 80px;
+    border-bottom: 2px solid gray;
+}
+
+.news-list-row img{
+    width: 50%;
+}

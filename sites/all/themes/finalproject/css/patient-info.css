@@ -1,0 +1,41 @@
+
+
+.patient-list-row {
+    border: 1px solid gray;
+    border-radius: 10px;
+    margin: 10px;
+    margin-bottom: 30px;
+    padding: 10px;
+    clear: right;
+}
+
+.patient-list-row img {
+    width: 15%;
+}
+
+.patient-list-row .patient-actions {
+    float: right;
+}
+
+.view-product-selection  th{
+    border: 1px solid #ddd;
+    padding: 8px;
+}
+
+.product-selection-row td{
+    border: 2px solid #ddd;
+    padding: 8px;
+}
+
+.view-product-selection th {
+    padding-top: 12px;
+    padding-bottom: 12px;
+    text-align: left;
+    background-color: #4CAF50;
+    color: white;
+}
+
+tr.product-selection-row img {
+    width: 80%;
+}
+
