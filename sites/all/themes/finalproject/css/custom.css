@@ -67,6 +67,16 @@ body {
   margin-top: 10px;
 }
 
+.menu-user a{
+  text-decoration: none;
+  color: white;
+  font-weight: 900;
+}
+
+.menu-user a:hover{
+  color: #d14812;
+  font-weight: 900;
+}
 
 /* Header */
 
@@ -91,74 +101,35 @@ header .header__site-name a:hover {
  text-decoration: none;
 }
 
-/* News List */
 
-.assignments-list {
-  padding: 5px;
-  padding-bottom: 15px;
-  font-size: 14px;
-  border-bottom: 1px solid gray;
+
+
+
+
+.breadcrumb img{
+  display: inline-block;
+  width: 20px;
+  margin-left: 10px;
+  margin-right: 10px;
 }
 
-.assignments-list:hover {
-  background-color: rgb(115, 174, 241);
-  border: 2px salmon;
-  border-radius: 5px;
+.breadcrumb a{
+  margin-top: 20px;
+  display: inline-block;
+  text-decoration: none;
+  background-color: #4caf50;
+  color: white;
+  padding: 2px 2px;
+  border: none;
   cursor: pointer;
+  border-radius: 10px;
+  opacity: 0.8;
 }
 
-.assignments-list img {
-  float: left;
-  margin-right: 5px;
+.breadcrumb a:hover{
+  opacity: 1
 }
 
-.assignments-list p {
-  display: inline;
-}
-
-div#block-menu-block-1 {
-  background-color: rgb(238, 165, 165);
-}
-
-div#block-menu-block-1 ul {
-  list-style: none;
-}
-
-div#block-menu-block-1 ul li {
-  display: inline;
-  list-style-type: none;
-  padding-right: 20px;
-  font-size: 1.5em;
-  font-style: bold;
-  padding-right: 2em;
-  padding-top: 1.5em;
-}
-
-.symptom-row-node {
-  text-align: center;
-  float: left;
-  width: 40%;
-}
-
-.symptom-row-node img {
-  height: 100px;
-  width: auto;
-}
-
-.medical-item-row {
-  padding: 10px;
-}
-
-.medical-item-row td {
-  width: 10%;
-}
-
-.medical-item-row:hover {
-  background-color: azure;
-  border: 2px solid;
-  border-radius: 5%;
-  cursor: pointer;
-}
 
 /* Clear Fix */
 
@@ -167,6 +138,11 @@ div#block-menu-block-1 ul li {
   clear: both;
   display: table;
 }
+
+
+
+
+
 
 /* User Form */
 
@@ -561,7 +537,7 @@ background: white;
 
 .btn-load {
   display: inline-block;
-  padding:10px 20px;
+  padding: 16px 20px;
   position: relative;
   transition: padding-right .3s ease;
   font-weight:700;

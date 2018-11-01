@@ -1,0 +1,24 @@
+/* News List */
+
+.assignments-list {
+    padding: 5px;
+    padding-bottom: 15px;
+    font-size: 14px;
+    border-bottom: 1px solid gray;
+  }
+  
+  .assignments-list:hover {
+    background-color: rgb(115, 174, 241);
+    border: 2px salmon;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  .assignments-list img {
+    float: left;
+    margin-right: 5px;
+  }
+  
+  .assignments-list p {
+    display: inline;
+  }

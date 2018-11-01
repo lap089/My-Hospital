@@ -139,22 +139,16 @@ function finalproject_preprocess_comment(&$variables, $hook) {
 // */
 
 
+
 function finalproject_preprocess_page(&$vars) {
   //watchdog('preprocess page', '<pre>'. print_r($vars['node']->type, TRUE) . '</pre>' );
   // switch($vars['node']->type) {
 
-	// 	// Embedded AJAX views require manual js injection into the header
-	// 	// See http://drupal.org/node/386388
-	// 	case 'nodeTypeWhichHasTheEmbeddedAJAXView':
-	// 		views_add_js('dependent');
-	// 		views_add_js('ajax_view');
-	// 		$vars['scripts'] = drupal_get_js();
-	// 		break;
-  // }
+    if (isset($vars['node']->type)) {
+      $vars['theme_hook_suggestions'][] = 'page__' . $vars['node']->type;
 
-      views_add_js('ajax_view');
-      $vars['scripts'] = drupal_get_js();
-      return $vars;
+    }  
+
 }
 
 

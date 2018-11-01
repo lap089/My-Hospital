@@ -4,7 +4,10 @@ global $user;
 
 if($user->uid) {
     echo '
-    <div class="menu-user"><strong>Hi '. $user->name .'!</strong></div>
+    <div class="menu-user">
+    <strong>Hi </strong>
+    <a href="/user">'. $user->name .'</a>
+    </div>
     <div class="menu-log">
     <a href="/user/logout">Logout <i class="fa fa-sign-out"></i></a>
     </div>';

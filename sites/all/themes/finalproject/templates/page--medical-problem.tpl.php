@@ -88,6 +88,12 @@
     <main class="<?php print $content_class; ?>" role="main">
       <?php 
       
+        $breadcrumb =  [];
+        $breadcrumb[] = l('Problem Selection', '<front>');
+        $breadcrumb[] = l('Survey Symptoms', current_path());
+        drupal_set_breadcrumb($breadcrumb);
+
+
       //$breadcrumb = variable_get('breadcrumb', $breadcrumb);
       // foreach($breadcrumb as $id => $bread) {
       //   print ($bread . ' >> ' );
@@ -98,8 +104,7 @@
       //watchdog('Breadcrumb array', '<pre>'.  print_r(var_dump($breadcrumb)) . '</pre>' );
      //watchdog('Breadcrumb objects', print_r(is_object($breadcrumb)) );
 
-    
-     $output = '<div class="breadcrumb">'  . implode('<img src="/sites/all/themes/finalproject/images-source/next.png"></img>', $breadcrumb) . '</div>';
+        $output = '<div class="breadcrumb">'  . implode('<img src="/sites/all/themes/finalproject/images-source/next.png"></img>', $breadcrumb) . '</div>';
         print ($output);
         //watchdog('Breadcrumb output', '<pre>'. print_r($output, TRUE) . '</pre>' );
       }
