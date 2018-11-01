@@ -301,6 +301,12 @@ div#block-menu-block-1 ul li {
   opacity: 0.7;
   text-align: center;
   border-radius: 10px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+#edit-actionuc-product-action-add-to-cart {
+  width: 80%;
 }
 
 .form-submit:hover {
@@ -350,26 +356,6 @@ div#block-menu-block-1 ul li {
   border-radius: 10px;
 }
 
-.cart-block-summary {
-  border: 2px solid rgb(193, 193, 243);
-  border-radius: 10px;
-}
-
-.cart-block-summary-links a {
-  background-color: #4caf50;
-  color: white;
-  padding: 8px 10px;
-  border: none;
-  cursor: pointer;
-  margin: 5px;
-  border-radius: 10px;
-  opacity: 0.7;
-}
-
-.cart-block-summary-links a:hover {
-  opacity: 1;
-}
-
 .form-wrapper td,
 th {
   border: 2px solid rgb(204, 238, 172);
@@ -388,12 +374,13 @@ th {
 ul.pager li {
   background-color: #4caf50;
   color: white;
-  padding: 2px 2px;
+  padding: 5px 5px;
   border: none;
   cursor: pointer;
   margin: 5px;
   border-radius: 20px;
   opacity: 0.9;
+  display: inline-block;
 }
 
 ul.pager li a {
@@ -406,6 +393,37 @@ ul.pager li:hover {
   opacity: 1;
 }
 
+
+
+/* Block Summary Cart */
+
+#block-uc-cart-cart {
+  margin-top: 20px;
+  border: 1px solid gray;
+  border-radius: 10px;
+  padding: 5px;
+}
+
+.cart-block-summary-links a {
+  background-color: #4caf50;
+  color: white;
+  padding: 2px 2px;
+  border: none;
+  cursor: pointer;
+  margin: 10px;
+  border-radius: 10px;
+  opacity: 0.7;
+  text-decoration: none;
+}
+
+.cart-block-summary-links ul.links li {
+  margin-top: 5px;
+  display: inline-block;
+}
+
+.cart-block-summary-links a:hover {
+  opacity: 1;
+}
 
 
 
@@ -461,6 +479,9 @@ ul.pager li:hover {
 }
 
 
+
+/* Medical Item Form - Radio Button Customize */
+
 /* The container */
 .medical-item-field-level-label {
   display: block;
@@ -500,7 +521,7 @@ ul.pager li:hover {
 
 /* When the radio button is checked, add a blue background */
 .medical-item-field-level-label input:checked ~ .checkmark {
-  background-color: #2196F3;
+  background-color:  #4caf50;
 }
 
 /* Create the indicator (the dot/circle - hidden when not checked) */
@@ -524,3 +545,68 @@ height: 8px;
 border-radius: 50%;
 background: white;
 }
+
+
+
+
+
+
+
+
+
+
+/* Custom loading button */
+
+
+
+.btn-load {
+  display: inline-block;
+  padding:10px 20px;
+  position: relative;
+  transition: padding-right .3s ease;
+  font-weight:700;
+}
+
+.btn-load.spinning {
+  padding-right: 40px;
+}
+
+.btn-load.spinning:after {
+  content: '';
+  right: 6px;
+  top: 50%;
+  width: 0;
+  height: 0;
+  box-shadow: 0px 0px 0 1px darken(#212121,10%);
+  position: absolute;
+  border-radius: 50%;
+  animation: rotate360 .5s infinite linear, exist .1s forwards ease;
+}
+
+.btn-load.spinning:before {
+  content: "";
+  width: 0px;
+  height: 0px;
+  border-radius: 50%;
+  right: 6px;
+  top: 50%;
+  position: absolute;
+  border-right: 3px solid #e9e1dd;
+  animation: rotate360 .5s infinite linear, exist .1s forwards ease ;
+}
+
+
+
+@keyframes rotate360 { 
+  100% {
+      transform: rotate(360deg);
+  }
+}
+@keyframes exist { 
+  100% {
+      width: 15px;
+      height: 15px;
+      margin: -8px 5px 0 0;
+  }
+}
+

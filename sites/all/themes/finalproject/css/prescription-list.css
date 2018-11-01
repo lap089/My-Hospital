@@ -95,3 +95,18 @@ tr.product-prescription-row img {
       opacity: 1;
   }
   
+
+
+
+
+
+  @media(max-width: 790px){
+
+    
+.user-list-row .user-list-row-info-detail, .patient-symptom-list {
+    float: none;
+    width: 100%;
+}
+
+    
+}

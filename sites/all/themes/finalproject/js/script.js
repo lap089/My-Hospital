@@ -19,6 +19,10 @@
 
       $("#form-submit-button-id").click(function() {
         console.log("Clicked!");
+
+        $( this ).find( "button" ).addClass('spinning');
+        $( this ).find( "button" ).html('Submitting');
+
         var formdata = [];
         $(".medical-item").each(function(i, element) {
           var title = $(element)
@@ -49,6 +53,7 @@
             window.location.href = '/node/2277';
           }
         );
+
       });
     }
   };

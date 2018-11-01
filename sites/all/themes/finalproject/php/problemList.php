@@ -34,7 +34,7 @@ $result = db_query($query, array(':type' => 'medical_problem'));
 
 $select .= '
 </select>
-<button id="medical-problem-list-button-id" >Start your treatment</button>
+<button class="btn-load" id="medical-problem-list-button-id" >Start your treatment</button>
 ';
 } 
 else if($user->uid && in_array('doctor', $user->roles) || in_array('administrator', $user->roles)) {

@@ -41,6 +41,10 @@
         .find("#btn-product-selection-id")
         .once("products-submit", function() {
           $(this).click(function() {
+
+            this.classList.add('spinning');
+            this.innerHTML = "Processing";
+
             postData = {
               doctorId: Drupal.settings.my_hospital.user.uid,
               patientId: window.patientId,

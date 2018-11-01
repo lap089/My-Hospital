@@ -30,6 +30,10 @@
       });
 
       $("#btn-appointment-id").click(function() {
+        
+        this.classList.add('spinning');
+        this.innerHTML = "Processing ";
+
         appointmentData = {
           patientId: Drupal.settings.my_hospital.user.uid,
           doctorId: doctorId,

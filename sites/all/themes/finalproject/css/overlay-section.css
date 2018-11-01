@@ -27,7 +27,7 @@
 
 
 .medical-problems-list #medical-problems-list-id {
-    padding: 16px 20px;
+    padding: 10px 20px;
     border: none;
     cursor: pointer;
     margin: 10px;
@@ -44,13 +44,11 @@
 .medical-problems-list #medical-problem-list-button-id{
     background-color: #4CAF50;
     color: white;
-    padding: 16px 20px;
     border: none;
     cursor: pointer;
     margin: 10px;
     margin-bottom:10px;
     opacity: 0.7;
-    text-align: center;
     border-radius: 10px;
 }
 
@@ -104,9 +102,14 @@
 
 
 
+
+
+
+
+
 @media(max-width: 790px){
 
-    .overlay-header img {
+.overlay-header img {
         height: 350px;
     }
 
@@ -119,7 +122,13 @@
     left: 0; 
 }
 
-.medical-problems-list #medical-problem-list-button-id, #medical-problems-list-id, .medical-problems-list .form-submit{
+
+.medical-problems-list #medical-problems-list-id {
+   width: 50%;
+}
+
+
+.medical-problems-list .form-submit{
     padding: 0px 0px;
     margin: 0px;
     margin-bottom:0px;
