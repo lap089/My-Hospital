@@ -79,7 +79,9 @@
 <?php print render($page['navigation']); ?>
 
 
-<?php print render($page['highlighted']); ?>
+<?php 
+print render($page['highlighted']); 
+?>
 
 <div class="layout-center">
 

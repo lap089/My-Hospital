@@ -6,6 +6,7 @@
 
 .overlay-header img {
     max-height: 800px;
+    width: 100%;
     position: relative;
 }
 
@@ -61,7 +62,7 @@
     list-style-type: none;
 }
 
-#user-login-form input[value="Log in"] {
+#user-login-form input[value="Log in"], input[value="Logging in"] {
     width: 40%;
 }
 

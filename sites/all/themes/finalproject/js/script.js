@@ -17,6 +17,15 @@
   Drupal.behaviors.my_custom_behavior = {
     attach: function(context, settings) {
 
+      //$('#user-login-form input[value="Log in"]').addClass('btn-load');
+
+      $('#user-login-form input[value="Log in"]').click(function() {
+        console.log("Login Clicked!");
+        this.value = "Logging in";
+      });
+
+
+
       $("#form-submit-button-id").click(function() {
         console.log("Clicked!");
 
