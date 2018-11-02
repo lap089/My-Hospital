@@ -537,6 +537,7 @@ background: white;
 
 
 .btn-load {
+  margin: 2px;
   display: inline-block;
   padding: 16px 20px;
   position: relative;
